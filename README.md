@@ -1,32 +1,50 @@
-To delete a repository on GitHub, follow these steps:
+# 🩺 Chest X-Ray Pneumonia Detection using CNN (Keras + TensorFlow)
 
-### Step-by-Step Guide:
+This project implements a deep learning pipeline to automatically detect pneumonia from chest X-ray images using a custom-built Convolutional Neural Network (CNN) with ResNet-style blocks.
 
-1. **Go to GitHub**:
-   - Open your web browser and go to [GitHub](https://github.com/).
+## 📂 Dataset
 
-2. **Sign in**:
-   - Sign in to your GitHub account using your credentials.
+- **Source**: [Kaggle - Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
+- Classes:
+  - `NORMAL`: Healthy lungs
+  - `PNEUMONIA`: Infected lungs (bacterial or viral)
 
-3. **Navigate to your repository**:
-   - Go to the repository you want to delete. You can find it in your list of repositories on your GitHub profile.
+## 🧠 Model Architecture
 
-4. **Go to the repository settings**:
-   - On the repository page, click on the **"Settings"** tab. This is located near the top of the page, right next to the "Insights" tab.
+- Custom CNN built with:
+  - `Conv2D`, `BatchNormalization`, `ReLU`, `Dropout`
+  - ResNet-like residual blocks with skip connections
+- Input shape: `(224, 224, 1)` — grayscale X-ray images
+- Final activation: `sigmoid` (binary classification)
+- Optimizer: Adam with `learning_rate=1e-4`
+- Loss function: `binary_crossentropy`
 
-5. **Scroll to the bottom**:
-   - Scroll down to the bottom of the settings page.
+## 📈 Training & Validation
 
-6. **Delete the repository**:
-   - Under the "Danger Zone" section, you will find an option called **"Delete this repository"**. Click on the **"Delete this repository"** button.
+- Training with data generators (`ImageDataGenerator`) with rescaling
+- Validation split: 10%
+- Callbacks:
+  - `EarlyStopping`: to prevent overfitting
+  - `ModelCheckpoint`: to save the best model based on validation accuracy
 
-7. **Confirm the deletion**:
-   - A confirmation dialog will appear, asking you to type the name of the repository to confirm that you want to delete it. Type the name of the repository exactly as it appears (for example, `username/repository-name`).
+## ✅ Results
 
-8. **Confirm deletion**:
-   - After typing the repository name, click on the **"I understand the consequences, delete this repository"** button.
+| Metric          | Value     |
+|----------------|-----------|
+| Train Accuracy | ~97%      |
+| Val Accuracy   | ~94%      |
+| Test Accuracy  | ~90%+     |
 
-   **Warning**: Deleting a repository is **permanent** and cannot be undone. All issues, pull requests, and the entire repository will be lost.
+_(Results may vary slightly depending on run conditions and random seed.)_
 
+## 🖼 Sample Predictions
 
+> *[Optional section: You can add matplotlib images or Grad-CAM heatmaps here]*
 
+## 🚀 Getting Started
+
+### 🔧 Requirements
+```bash
+tensorflow
+numpy
+matplotlib
