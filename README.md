@@ -1,50 +1,54 @@
-# 🩺 Chest X-Ray Pneumonia Detection using CNN (Keras + TensorFlow)
 
-This project implements a deep learning pipeline to automatically detect pneumonia from chest X-ray images using a custom-built Convolutional Neural Network (CNN) with ResNet-style blocks.
+# Pneumonia Detection using Deep Learning
 
-## 📂 Dataset
+This repository contains a Deep Learning project for detecting Pneumonia from Chest X-Ray images using the **Chest_X_Ray_Images (Pneumonia)** dataset. The project leverages **EfficientNetB0** for feature extraction and includes data augmentation techniques to improve model performance, especially with limited dataset sizes.
 
-- **Source**: [Kaggle - Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
-- Classes:
-  - `NORMAL`: Healthy lungs
-  - `PNEUMONIA`: Infected lungs (bacterial or viral)
+## Project Overview
+- **Objective**: Build a binary classification model to detect Pneumonia (Normal vs. Pneumonia) from X-Ray images.
+- **Techniques**: Feature Extraction with EfficientNetB0, Data Augmentation, ImageDataGenerator.
+- **Dataset**: Chest_X_Ray_Images (Pneumonia) dataset with approximately 50 images per split (train, validation, test).
+- **Tools**: TensorFlow, Keras, Python.
 
-## 🧠 Model Architecture
+## Features
+- Implementation of EfficientNetB0 for feature extraction with a custom top layer.
+- Data augmentation to generate additional images and address dataset size limitations.
+- Train, validation, and test data processing with optimized batch sizes.
+- Model saving and evaluation metrics.
 
-- Custom CNN built with:
-  - `Conv2D`, `BatchNormalization`, `ReLU`, `Dropout`
-  - ResNet-like residual blocks with skip connections
-- Input shape: `(224, 224, 1)` — grayscale X-ray images
-- Final activation: `sigmoid` (binary classification)
-- Optimizer: Adam with `learning_rate=1e-4`
-- Loss function: `binary_crossentropy`
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/pneumonia-detection.git
+   ```
+2. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Ensure the dataset is placed in the correct directory (e.g., `/path/to/Chest_X_Ray_Images`).
 
-## 📈 Training & Validation
+## Usage
+1. Run the data augmentation script to generate additional images:
+   ```bash
+   python augment_data.py
+   ```
+2. Train the model using the main script:
+   ```bash
+   python train_model.py
+   ```
+3. Evaluate the model or make predictions with the saved model.
 
-- Training with data generators (`ImageDataGenerator`) with rescaling
-- Validation split: 10%
-- Callbacks:
-  - `EarlyStopping`: to prevent overfitting
-  - `ModelCheckpoint`: to save the best model based on validation accuracy
+## Files
+- `augment_data.py`: Script to generate augmented images.
+- `train_model.py`: Main script for training the EfficientNetB0 model.
+- `requirements.txt`: List of required Python packages.
+- `pneumonia_resnet_model.h5`: Saved model file (after training).
 
-## ✅ Results
+## Results
+- Initial accuracy may vary due to limited data; augmentation improves performance.
+- Further tuning (e.g., Fine-tuning ResNet layers) can be explored for better results.
 
-| Metric          | Value     |
-|----------------|-----------|
-| Train Accuracy | ~97%      |
-| Val Accuracy   | ~94%      |
-| Test Accuracy  | ~90%+     |
+## Contributing
+Feel free to fork this repository, submit issues, or create pull requests. Suggestions for improving model accuracy or adding new features are welcome!
 
-_(Results may vary slightly depending on run conditions and random seed.)_
-
-## 🖼 Sample Predictions
-
-> *[Optional section: You can add matplotlib images or Grad-CAM heatmaps here]*
-
-## 🚀 Getting Started
-
-### 🔧 Requirements
-```bash
-tensorflow
-numpy
-matplotlib
+## Contact
+For questions or collaboration, reach out at [kafashianmatin@gmail.com]
